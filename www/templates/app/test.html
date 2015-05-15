@@ -1,0 +1,60 @@
+<ion-view view-title="测试页">
+  <ion-content class="padding">
+    <ion-list>
+    	<ion-item>日期过滤:{{data.Now | myfilter:'1234'}}</ion-item>
+    </ion-list>
+    <ion-list>
+    <!--<form name="myForm" novalidate>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        用户名
+                    </div>
+                    <div class="col-md-10">
+                        <input type="text" placeholder="ng-Messages测试" name="name" ng-model="username.name"
+                               ng-minlength=3 ng-maxlength=20 required />
+                        <hr/>
+                        $error：{{myForm.name.$error}}
+                        <hr/>
+                        <div ng-messages="myForm.name.$error">
+                            <div ng-message="required">必填项</div>
+                            <div ng-message="minlength">字符太短小于3</div>
+                            <div ng-message="maxlength">字符太长大于20</div>
+                        </div> 
+                    </div>
+                </div>
+            </form>-->
+    <form name="mainForm" novalidate>
+    	<ion-item>
+    	<input type="text" name="name" ng-model="data.name" placeholder="请输入用户名" required />
+    	<span class="error" ng-show="mainForm.name.$dirty && mainForm.name.$invalid">不符合</span>
+    	<span class="error" ng-show="mainForm.name.$error.required">必填</span>
+    	</ion-item>
+    	<ion-item>
+    	<input type="number" val-Age name="age" ng-model="data.age" placeholder="年龄" ng-maxlength="3" />
+    	<div ng-messages="mainForm.age.$error">
+    	<span class="error" ng-message="maxlength">最大长度为3个字符</span>
+    	<span class="error" ng-message="over">年龄不能超过200岁</span>
+    	<span class="error" ng-message="number">只能输入数字</span>
+    	</div>
+    	</ion-item>
+    	<ion-item>
+    	<input type="email" name="email" ng-model="data.email" placeholder="邮箱" ng-minlength="5" ng-maxlength="20" required />
+    	<div ng-messages="mainForm.email.$error" ng-messages-include ="templates/app/error.html"></div>
+    	</ion-item>
+    	<input type="submit" class="button" ng-disabled="form.$invalid" />
+    	<div>表单属性：<br />
+	    	$pristine,没有修改过name表单：{{mainForm.name.$pristine}} <br />
+	    	$dirty,是否与name表单交互过：{{mainForm.name.$dirty}} <br />
+	    	$valid,通过name表单验证：{{mainForm.name.$valid}} <br />
+	    	$invalid,没通过name表单验证：{{mainForm.name.$invalid}} <br />
+	    	$error,name表单的错误信息：{{mainForm.name.$error}} <br />
+	    	表单会根据输入状态，自动添加.ng-valid .ng-invalid .ng-pristine .ng-dirty 类，可以自定义样式<br />
+	    	引用angular-messages.js之后，可以直接将ng-show替换为ng-message="maxlength"(要用<div ng-messages="mainForm.age.$error">包裹)
+    	</div>
+    </form>
+   </ion-list> 
+   <ion-list>
+   	<div my-Directive my-Url="http://www.baidu.com"></div>
+   </ion-list>
+  </ion-content>
+</ion-view>
