@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="jquery-1.8.2.min.js" ></script>
+		<script>
+			$(function(){
+				console.log(stripscript('asdf'));
+				console.log(stripscript('aasdf'));
+				console.log(stripscript(';asdf'));
+			});
+			
+			//是否包含特殊字符
+			function stripscript(s) {
+			    var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+				var rs = "";
+				for (var i = 0;i < s.length; i++) {
+					rs = rs+s.substr(i, 1).replace(pattern, '');
+				}
+				return rs==s; 
+			}
+			
+			function CheckCode(t) {  
+			    var Error = "";  
+			    var re = /^[\u4e00-\u9fa5a-z]+$/gi;  
+			    if (!re.test(t)) {  
+			        Error = "名称中含有特殊字符!";  
+			    }  
+			    return Error;  
+			}
+		</script>
+	</head>
+	<body>		
+		<div id="test">test</div>
+		<script type="text/javascript">
+			$("#test").click(function(){
+				
+//				$.post('http://169.254.128.67:8091/K11SVC/K11Service.svc/Test',user,function(data){
+//					
+//					alert(data.user.UserName);
+//					console.log('aa');
+//			});
+			
+			});
+			
+			var user={"name":"aaaaaaaa","psw":"asdf"};
+			$.ajax({
+                    url: 'http://169.254.128.67:8091/K11SVC/K11Service.svc/Test',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: "application/json",
+                    data:JSON.stringify(user),
+                    success: function (data) {
+                        //alert('data'+data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    	//alert('err');
+                        //alert(XMLHttpRequest.responseText);
+                    }
+                });
+		</script>
+	</body>
+</html>

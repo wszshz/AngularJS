@@ -1,0 +1,2 @@
+进入当前目录，在命令行中输入：
+karma start karma.conf.js 即可运行测试
