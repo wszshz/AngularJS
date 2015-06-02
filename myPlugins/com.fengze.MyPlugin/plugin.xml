@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.fengze.MyPlugin"
+        version="0.0.1">
+    <name>我的插件</name>
+    <description>
+        自定义插件
+    </description>
+    <author>LZQ</author>
+    <license>Apache 2.0 License</license>
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+
+    <js-module src="www/MyPlugin.js" name="MyPlugin">
+        <clobbers target="window.plugins.MyPlugin"/>
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MyPlugin">
+                <param name="android-package" value="com.fengze.MyPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/MyPlugin.java"
+                     target-dir="src/com/fengze/MyPlugin"></source-file>
+    </platform>
+</plugin>
