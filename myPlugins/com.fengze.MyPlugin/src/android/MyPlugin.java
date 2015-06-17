@@ -5,6 +5,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.*;
 
 public class MyPlugin extends CordovaPlugin {
 	@Override
@@ -13,7 +14,7 @@ public class MyPlugin extends CordovaPlugin {
 		String str="";
 		JSONObject obj = data.getJSONObject(0);
 		if (action.equals("test")) {
-			str = obj.getString("id");
+			str = obj.optString("id");
 			JSONObject result=new JSONObject();
 			if(str!="1"){
 				result.put("success",true);
@@ -24,5 +25,27 @@ public class MyPlugin extends CordovaPlugin {
 			}
 		}
 		return true;
+	}
+	
+	public void Log(String str) {
+		try {
+			//如果文件存在，则追加内容；如果文件不存在，则创建文件
+	        BufferedWriter out = null;  
+	        try {  
+	            out = new BufferedWriter(new OutputStreamWriter(  
+	                    new FileOutputStream("/sdcard/LZQ/text.txt", true)));  
+	            out.write(str+" \r\n");
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        } finally {  
+	            try {  
+	                out.close();  
+	            } catch (IOException e) {  
+	                e.printStackTrace();  
+	            }  
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

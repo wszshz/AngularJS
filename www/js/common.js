@@ -20,20 +20,23 @@ angular.module('starter.services', [])
   	};
  	  	
 	var request=function(method,action,data,callback){
+      	var $q = angular.injector(["ng"]).get("$q");
+       	var deferred = $q.defer();
+       	
 		$http({
-			method:method,
+			method:method || 'get',
 			url: fz.getServerUrl() + "/K11SVC/" + action,
-			data:data
+			data:data || {}
 		}).then(function(response){
-			if(callback){
-				callback(response.data);
-			}
+			deferred.resolve(response.data);
 		},function(err){
 			$ionicPopup.alert({
 				template:"错误状态" + err.status+"："+err.statusText,
 				itle:'请求错误'
 			});
+			//deferred.reject(err);
 		});
+		return deferred.promise;
 	};
 	
 	
