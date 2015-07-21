@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+id="fz.broadcast"
+version="0.0.1">
+	<name>Broadcast</name>
+	<description>定义广播</description>
+	<author>LZQ</author>
+	<license>Apache 2.0 License</license>
+	<engines>
+		<engine name="cordova" version=">=3.0.0"/>
+	</engines>
+	<js-module src="www/broadcast.js" name="broadcast">
+		<clobbers target="$broadcast"/>
+	</js-module>
+	<!-- android -->
+	<platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="broadcast">
+                <param name="android-package" value="fz.broadcast"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/broadcast.java"
+                     target-dir="src/com/fengze/broadcast"></source-file>
+    </platform>
+</plugin>

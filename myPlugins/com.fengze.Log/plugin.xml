@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.fengze.MyPlugin"
+        id="fz.log"
         version="0.0.1">
-    <name>我的插件</name>
+    <name>log</name>
     <description>
-        自定义插件
+        输出日志
     </description>
     <author>LZQ</author>
     <license>Apache 2.0 License</license>
@@ -13,36 +13,24 @@
         <engine name="cordova" version=">=3.0.0"/>
     </engines>
 
-    <js-module src="www/MyPlugin.js" name="MyPlugin">
-        <clobbers target="window.plugins.MyPlugin"/>
+    <js-module src="www/log.js" name="fzLog">
+        <clobbers target="$fzLog"/>
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="MyPlugin">
-                <param name="android-package" value="com.fengze.MyPlugin"/>
+            <feature name="fzLog">
+                <param name="android-package" value="fz.log"/>
             </feature>
         </config-file>
-        <source-file src="src/android/MyPlugin.java"
-                     target-dir="src/com/fengze/MyPlugin"></source-file>
+        <source-file src="src/android/log.java"
+                     target-dir="src/com/fengze/log"></source-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
              <!--往sdcard中写入数据的权限 -->
 			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 			 <!--在sdcard中创建/删除文件的权限 -->
 			<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
         </config-file>
-    </platform>
-    
-    <!-- ios -->
-    <platform name="ios">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="MyPlugin">
-                <param name="ios-package" value="MyPlugin" />
-            </feature>
-        </config-file>
-
-        <header-file src="src/ios/MyPlugin.h" />
-        <source-file src="src/ios/MyPlugin.m" />
     </platform>
 </plugin>
